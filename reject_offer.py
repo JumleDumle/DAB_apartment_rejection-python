@@ -1,6 +1,10 @@
 import pyautogui
 import time
 from python_imagesearch.imagesearch import *
+import pathlib
+
+
+file_prefix = pathlib.Path(__file__).parent.resolve()
 
 # Define function to find mouse position
 def mouse_pos():
@@ -20,9 +24,9 @@ def click(x, y):
 
 
 # Declare images to search for
-se_tilbud = R"C:\Users\Julius\Documents\CODING\Python\rejection\1.png"
-afvis_tilbud = R"C:\Users\Julius\Documents\CODING\Python\rejection\2.png"
-bekræft = R"C:\Users\Julius\Documents\CODING\Python\rejection\3.png"
+se_tilbud = RF"{file_prefix}\1.png"
+afvis_tilbud = RF"{file_prefix}\2.png"
+bekræft_nej = RF"{file_prefix}\3.png"
 
 
 # Define function to show offer
@@ -34,8 +38,7 @@ def show_offer():
         click(1444, 653)
         time.sleep(2)
     else:
-        print("image 1 not found")
-        raise(RuntimeError)
+        raise FileNotFoundError(F"image {se_tilbud} not found on screen")
 
 # Define function to decline offer
 def decline_offer():
@@ -47,12 +50,11 @@ def decline_offer():
         pyautogui.press('pagedown')
         time.sleep(3)
     else:
-        print("image 2 not found")
-        raise(RuntimeError)
-    
+        raise FileNotFoundError(F"image {afvis_tilbud} not found on screen")
+
 # Define function to confirm
 def confirm_no():
-    pos = imagesearcharea(bekræft, 1338, 395, 1433, 458)
+    pos = imagesearcharea(bekræft_nej, 1338, 395, 1433, 458)
     if pos[0] != -1:
         print("position : ", pos[0], pos[1])
         time.sleep(1)
@@ -60,8 +62,7 @@ def confirm_no():
         time.sleep(8)
         pyautogui.press('home')
     else:
-        print("image 3 not found")
-        raise(RuntimeError)
+        raise FileNotFoundError(F"image {bekræft_nej} not found on screen")
 
 
 # Main function
