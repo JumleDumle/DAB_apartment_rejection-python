@@ -67,17 +67,22 @@ def confirm_no():
 
 # Main function
 def main():
-    # Are you READY?
-    pyautogui.alert("Ready?")
+    
+    # Dialog to await confirmation before execution of main function- uncomment if needed
+#     pyautogui.alert("Ready?")
+
 #    mouse_pos()
+
+
 
     # amount of offers to decline (can be found under: https://www.dabbolig.dk/min-side/min-boligsoegning/)
     offer_count = 1
+
     # THE loop
     while offer_count > 0:
-        """show_offer()
+        show_offer()
         decline_offer()
-        confirm_no()"""
+        confirm_no()
         offer_count =- 1
     print("DONE!!!")
 
